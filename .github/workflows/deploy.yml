@@ -3,11 +3,11 @@ name: test and deploy
 on:
   push:
     branches:
-      - main
+      - master
 
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -58,10 +58,10 @@ jobs:
           install-command: echo
           build: pnpm run build
           start: npx vite --port 3333
-          
+
       - name: build
         run: pnpm run build
-      
+
       - name: deploy
         uses: easingthemes/ssh-deploy@v2.2.11
         env:
@@ -70,4 +70,4 @@ jobs:
           SOURCE: 'dist/'
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
           REMOTE_USER: ${{ secrets.USER_NAME }}
-          TARGET: /var/www/huizhong.com/html/ 
+          TARGET: /var/www/huizhong.com/html/
